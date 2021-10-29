@@ -1,0 +1,21 @@
+$text-color: #FFF;
+
+$black-primary: #16181b;
+$black-secondary: #121417;
+$black-tertiary: #202020;
+$border-color: #4c4c4c; 
+
+$breakpoint-medium: 1224px;
+$breakpoint-small: 520px;
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: $black-primary;
+    background-attachment: fixed;
+    color: $text-color;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 0.1px;
+}
