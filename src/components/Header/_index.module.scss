@@ -1,0 +1,183 @@
+@import "../../base.module";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+
+  background-color: $black-tertiary;
+
+  width: 100%;
+}
+
+.headerLeftMenu {
+  display: flex;
+  align-items: center;
+}
+
+.headerButtonMenu{
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    background: rgba($color: #ffffff, $alpha: 0.1);
+    height: 100%;
+    width: 100%;
+    padding: 1.2em;
+    border-radius: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+}
+
+
+.headerLogo {
+  display: block;
+  object-fit: contain;
+  margin-left: 1.5em;
+}
+
+.headerForm {
+  flex: 0.6;
+  display: flex;
+  padding: 0.1rem;
+  margin: 0 1rem;
+  border-radius: 3px;
+  max-width: 650px;
+
+  .searchContainer {
+    width: 100%;
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    font-weight: 500;
+    background-color: $black-secondary;
+    padding: 0.6em;
+    color: #ece5e5;
+    border: 1px solid #323232;
+
+    &:focus {
+      outline: none;
+      border: 1px solid rgb(28, 98, 185);
+    }
+  }
+}
+
+.headerIcons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  svg {
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+  }
+
+  img {
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+  }
+}
+
+.headerAvatar {
+  display: inline-block;
+  background: rgb(75, 75, 218);
+  border-radius: 100%;
+  object-fit: contain;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.btn {
+  border: none;
+  background-color: #323232;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btnTransparent {
+  background: transparent;
+  outline: none;
+}
+
+.btnOverlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50%;
+  padding: 0.5em;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.btnOverlay:active {
+  background: rgba($color: #ffffff, $alpha: 0.1);
+  border-radius: 100%;
+}
+
+.btnThick {
+  padding: 0.2em 0.7em;
+}
+
+.btnRounded {
+  position: relative;
+  border-radius: 50%;
+  padding: 0.5em;
+}
+
+.btnBlackSecondary {
+  background-color: $black-secondary;
+}
+
+.btnMarginLeft {
+  margin-left: 0.5em;
+}
+
+.btnSearchIcon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btnVoiceIcon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: $breakpoint-small) {
+  .headerForm {
+    flex: 1;
+  }
+
+  .headerLeftMenu {
+    display: block;
+  }
+
+  .headerLogo {
+    display: none;
+  }
+
+  .headerIcons > *:not(img) {
+    display: none;
+  }
+}

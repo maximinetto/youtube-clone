@@ -1,21 +1,26 @@
-import React from 'react'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
-import HomePage from './pages/HomePage'
-import './_app.scss'
+import classNames from "classnames";
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import HomePage from "./pages/HomePage";
+import styles from "./_app.module.scss";
 
 const App = () => {
-    return (
-        <div>
-           <Header />
-           <div className="app__container">
-            <Sidebar />     
-            <div className="app__main">
-                <HomePage />
-            </div>
-           </div>
-        </div>
-    )
-}
+  const [sidebar, setSidebar] = useState(false);
 
-export default App
+  const handleToggleSidebar = () => setSidebar((value) => !value);
+
+  return (
+    <div>
+      <Header sidebar={sidebar} onToggleSidebar={handleToggleSidebar}/>
+      <div className={classNames(styles.appContainer)}>
+        <Sidebar show={sidebar}/>
+        <div className={classNames(styles.appMain)}>
+          <HomePage />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;

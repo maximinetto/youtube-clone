@@ -1,14 +1,14 @@
+import classNames from "classnames";
 import React from "react";
 import CategoriesBar from "../../components/CategoriesBar";
 import Video from "../../components/Video";
-
-import "./_index.scss"
+import styles from "./_index.module.scss";
 
 function HomePage() {
   return (
-    <div className="home-container">
+    <div className={classNames(styles.homeContainer)}>
       <CategoriesBar />
-      <div className="home__grid">
+      <div className={classNames(styles.homeGrid)}>
         {
           <>
             <Video />

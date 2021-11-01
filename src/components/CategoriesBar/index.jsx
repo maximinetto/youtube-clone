@@ -1,5 +1,5 @@
 import React from "react";
-import "./_index.scss";
+import "./_index.module.scss";
 
 function CategoriesBar() {
   return <div>Bar</div>;
