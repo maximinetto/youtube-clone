@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export const ICONS_NAME = {
   APPS: "APPS",
@@ -11,7 +12,7 @@ export const ICONS_NAME = {
   HOME: "Home",
   SUBCRIPTIONS: "Subcriptions",
   LIKED_VIDEOS: "LikedVideos",
-  HISTORY: "History"
+  HISTORY: "History",
 };
 
 const DEFAULT_ICONS = [
@@ -81,7 +82,7 @@ function Icon({
   fill = "",
   name = "",
   style,
-  onClick
+  onClick,
 }) {
   let d = shape;
 
@@ -111,5 +112,18 @@ function Icon({
     </svg>
   );
 }
+
+Icon.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  preserveAspectRatio: PropTypes.string,
+  focusable: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  fill: PropTypes.string,
+  shape: PropTypes.string,
+  name: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export default Icon;

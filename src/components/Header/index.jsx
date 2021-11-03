@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 import Icon, { ICONS_NAME } from "../Icons/Icon";
-import YoutubeIcon from "../Icons/YoutubeIcon";
 import businessMan from "/businessman.svg";
 import styles from "./_index.module.scss";
+import LeftMenu from "../LeftMenu";
 
-function Header({ sidebar, onToggleSidebar }) {
+function Header({ onToggleSidebar }) {
   const boxAnimationCloseButton = useRef();
 
   const handleSubmit = (e) => {
@@ -14,27 +15,7 @@ function Header({ sidebar, onToggleSidebar }) {
 
   return (
     <div className={classNames(styles.header)}>
-      <div className={classNames(styles.headerLeftMenu)}>
-        <button
-          className={(styles.headerButtonMenu)}
-          onClick={onToggleSidebar}
-        >
-          <Icon
-            name={ICONS_NAME.HAMBURGER}
-            width={24}
-            height={24}
-            fill="white"
-            className={classNames(styles.headerMenu)}
-          />
-        </button>
-
-        <YoutubeIcon
-          width={90}
-          height={20}
-          className={classNames(styles.headerLogo)}
-        />
-      </div>
-
+      <LeftMenu onToggleSidebar={onToggleSidebar} />
       <form className={classNames(styles.headerForm)} onChange={handleSubmit}>
         <div className={classNames(styles.searchContainer)}>
           <input type="text" placeholder="Search" />
@@ -98,5 +79,9 @@ function Header({ sidebar, onToggleSidebar }) {
     </div>
   );
 }
+
+Header.propTypes = {
+  onToggleSidebar: PropTypes.func,
+};
 
 export default Header;

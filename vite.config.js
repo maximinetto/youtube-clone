@@ -1,14 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import ViteFonts from 'vite-plugin-fonts'
+import viteFonts from "vite-plugin-fonts";
+import eslintPlugin from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    ViteFonts({
+    eslintPlugin(),
+    viteFonts({
       google: {
-        families: [{name: "Roboto", styles: 'wght@300;400;700'}],
+        families: [{ name: "Roboto", styles: "wght@300;400;700" }],
       },
     }),
   ],

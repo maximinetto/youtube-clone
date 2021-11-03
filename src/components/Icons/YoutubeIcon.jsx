@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function YoutubeIcon({
   width = 32,
@@ -7,7 +8,7 @@ function YoutubeIcon({
   focusable = false,
   className = "",
   style,
-  fill = "white"
+  fill = "white",
 }) {
   return (
     <svg
@@ -79,5 +80,15 @@ function YoutubeIcon({
     </svg>
   );
 }
+
+YoutubeIcon.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  preserveAspectRatio: PropTypes.string,
+  focusable: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  fill: PropTypes.string,
+};
 
 export default YoutubeIcon;

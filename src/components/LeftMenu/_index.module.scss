@@ -1,0 +1,52 @@
+@import "../../base.module";
+
+.headerLeftMenu {
+  display: flex;
+  align-items: center;
+}
+
+.headerButtonMenu {
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    background: rgba($color: #ffffff, $alpha: 0.1);
+    height: 100%;
+    width: 100%;
+    padding: 1.2em;
+    border-radius: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.headerLogo {
+  display: block;
+  object-fit: contain;
+  margin-left: 1.5em;
+  cursor: pointer;
+}
+
+@media (max-width: $breakpoint-small) {
+  .headerLeftMenu {
+    display: block;
+  }
+
+  .headerLogo {
+    display: none;
+  }
+}

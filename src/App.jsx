@@ -12,9 +12,9 @@ const App = () => {
 
   return (
     <div>
-      <Header sidebar={sidebar} onToggleSidebar={handleToggleSidebar}/>
+      <Header onToggleSidebar={handleToggleSidebar} />
       <div className={classNames(styles.appContainer)}>
-        <Sidebar show={sidebar}/>
+        <Sidebar show={sidebar} onToggleSidebar={handleToggleSidebar} />
         <div className={classNames(styles.appMain)}>
           <HomePage />
         </div>
