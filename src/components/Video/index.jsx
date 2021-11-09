@@ -11,19 +11,25 @@ function Video() {
         />
         <span>05:43</span>
       </div>
-      <div className={styles.videoTitle}>
-        How to create a app in 5 minutes #made by Maximinetto
-      </div>
-      <div className={styles.videoChannel}>
-        <img
-          src="https://yt3.ggpht.com/ytc/AKedOLSsnWm_dQzIqM-qgW74yebXNX_b__k6WAeUBb6GeGQ=s176-c-k-c0x00ffffff-no-rj-mo"
-          alt="Photo"
-        />
-        <p>Maximinetto</p>
-      </div>
-      <div className={styles.videoDetails}>
-        <span>5m views •</span>
-        <span>5 days ago</span>
+      <div className={styles.videoBottom}>
+        <div className={styles.videoLeft}>
+          <img
+            src="https://yt3.ggpht.com/ytc/AKedOLSsnWm_dQzIqM-qgW74yebXNX_b__k6WAeUBb6GeGQ=s176-c-k-c0x00ffffff-no-rj-mo"
+            alt="Photo"
+          />
+        </div>
+        <div className={styles.videoBottomCenter}>
+          <div className={styles.videoTitle}>
+            How to create a app in 5 minutes #made by Maximinetto
+          </div>
+          <div className={styles.videoChannel}>
+            <p>Maximinetto</p>
+          </div>
+          <div className={styles.videoDetails}>
+            <span>5m views •</span>
+            <span>5 days ago</span>
+          </div>
+        </div>
       </div>
     </div>
   );

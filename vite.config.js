@@ -7,7 +7,7 @@ import eslintPlugin from "vite-plugin-eslint";
 export default defineConfig({
   plugins: [
     react(),
-    eslintPlugin(),
+    eslintPlugin({cache: false}),
     viteFonts({
       google: {
         families: [{ name: "Roboto", styles: "wght@300;400;700" }],
