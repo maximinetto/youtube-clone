@@ -1,21 +1,32 @@
-$text-color: #FFF;
+$text-color: #fff;
 
 $black-primary: #16181b;
 $black-secondary: #121417;
 $black-tertiary: #202020;
-$border-color: rgba(255, 255, 255, 0.1); 
+$border-color: rgba(255, 255, 255, 0.1);
 
 $breakpoint-medium: 1224px;
 $breakpoint-small: 520px;
+$border: unquote("1px solid rgb(255, 255, 255, 0.1)");
 
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-    background: $black-primary;
-    background-attachment: fixed;
-    color: $text-color;
-    font-family: "Roboto", sans-serif;
-    letter-spacing: 0.1px;
+  background: $black-primary;
+  background-attachment: fixed;
+  color: $text-color;
+  font-family: "Roboto", Arial, sans-serif;
+  letter-spacing: 0.1px;
+}
+
+.dropdownItemText {
+  display: inline-block;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0.8em;
 }

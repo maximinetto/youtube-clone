@@ -11,6 +11,7 @@
 
 .videoTop {
   margin-bottom: 0.5em;
+  position: relative;
 
   img {
     width: 100%;
@@ -18,7 +19,7 @@
 
   span {
     position: absolute;
-    bottom: 0.3em;
+    bottom: 0.5em;
     right: 0.3em;
     padding: 0.2em;
     background: #080808ec;

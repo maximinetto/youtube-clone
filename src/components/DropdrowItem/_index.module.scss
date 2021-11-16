@@ -1,0 +1,21 @@
+@import "../../base.module";
+
+.profileItem {
+  display: block;
+  border-bottom: $border;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  cursor: pointer;
+  padding: 0.8em 0.7em;
+  width: 100%;
+}
+
+.buttonWithoutStyle {
+  background: transparent;
+  border: none;
+  outline: none;
+}

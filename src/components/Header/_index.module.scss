@@ -68,6 +68,7 @@
   border-radius: 100%;
   object-fit: contain;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  vertical-align: middle;
 }
 
 .btn {
@@ -125,6 +126,19 @@
 .btnVoiceIcon {
   display: inline-block;
   vertical-align: middle;
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+}
+
+.buttonWithoutStyle {
+  outline: none;
+  border: none;
+  background: transparent;
 }
 
 @media (max-width: $breakpoint-small) {

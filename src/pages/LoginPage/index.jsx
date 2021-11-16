@@ -8,7 +8,7 @@ function LoginPage() {
   const { login } = useAuth();
 
   const handleLogin = () => {
-    login({ email: "", password: "" });
+    login();
   };
 
   return (
