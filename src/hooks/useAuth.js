@@ -1,24 +1,36 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "wouter";
-import { login, logout } from "../redux/actions/auth.action";
+import {
+  login as loginAction,
+  loginSuccess,
+  logout as logoutAction,
+} from "@/redux/actions/auth.action";
+import {
+  login as loginInFirebase,
+  logout as logoutFromFirebase,
+} from "../firebase";
 
 export default function useAuth() {
+  const { loading, logged } = useSelector((state) => ({
+    loading: state.auth.loading,
+    logged: state.auth.logged,
+  }));
   const dispatch = useDispatch();
-  const { accessToken, loading } = useSelector((state) => state.auth);
-  const [, setLocation] = useLocation();
 
-  useEffect(() => {
-    if (accessToken) {
-      setLocation("/");
-    } else if (!loading && !accessToken) {
-      setLocation("/auth");
-    }
-  }, [loading, accessToken, setLocation]);
+  function login() {
+    dispatch(loginAction());
+    loginInFirebase().then(() => {
+      dispatch(loginSuccess());
+    });
+  }
+
+  function logout() {
+    logoutFromFirebase().then(() => dispatch(logoutAction()));
+  }
 
   return {
-    login: () => dispatch(login()),
-    logout: () => dispatch(logout()),
+    login,
+    logout,
     loading,
+    logged,
   };
 }

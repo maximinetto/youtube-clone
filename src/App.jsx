@@ -1,31 +1,35 @@
 import React from "react";
-import { Redirect, Route, Switch } from "wouter";
+import { Redirect, Switch } from "wouter";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import useAuth from "./hooks/useAuth";
 import Layout from "./components/Layout";
-import Spinner from "./components/Spinner";
+import GuardRoute, { TypeOfGuard } from "./components/GuardRoute";
+import Auth from "./components/Auth";
 
 const App = () => {
-  const { loading } = useAuth();
-
-  if (loading) {
-    return <Spinner />;
-  }
-
   return (
-    <Switch>
-      <Route path="/auth" component={LoginPage} />
-
-      <Layout>
-        <Route path="/" component={HomePage} />
-        <Route path="/search" component={<h1>Search Results</h1>} />
-      </Layout>
-
-      <Route>
-        <Redirect to="/" />
-      </Route>
-    </Switch>
+    <Auth>
+      <Switch>
+        <GuardRoute
+          type={TypeOfGuard.public}
+          path="/auth"
+          component={LoginPage}
+        />
+        <GuardRoute
+          type={TypeOfGuard.private}
+          path="/"
+          component={HomePage}
+          layout={Layout}
+        />
+        <GuardRoute
+          type={TypeOfGuard.private}
+          path="/search"
+          component={<h1>Search Results</h1>}
+          layout={Layout}
+        />
+        <Redirect path="/" />
+      </Switch>
+    </Auth>
   );
 };
 

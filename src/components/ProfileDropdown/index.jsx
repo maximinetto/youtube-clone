@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 
 import styles from "./_index.module.scss";
 import Icon, { ICONS_NAME } from "../Icons/Icon";
-import useAuth from "../../hooks/useAuth";
 import DropdownItem from "../DropdrowItem";
 import useClickOutside from "../../hooks/useClickOutside";
 import Avatar from "../Avatar";
+import useAuth from "@/hooks/useAuth";
 
 function ProfileDropdown({ openMenuProfile, onClickOutside, target }) {
-  const { logout } = useAuth();
   const ref = useRef();
+  const { logout } = useAuth();
   useClickOutside({
     ref,
     handler: () => {
@@ -19,10 +19,6 @@ function ProfileDropdown({ openMenuProfile, onClickOutside, target }) {
     },
     targetException: target,
   });
-
-  const handleLogout = () => {
-    logout();
-  };
 
   return (
     <ul
@@ -34,7 +30,7 @@ function ProfileDropdown({ openMenuProfile, onClickOutside, target }) {
       <DropdownItem>
         <Avatar text="Maximiliano Minetto" />
       </DropdownItem>
-      <DropdownItem onClick={handleLogout}>
+      <DropdownItem onClick={logout}>
         <Icon name={ICONS_NAME.LOGOUT} height={24} width={24} fill="white" />
         <span className={classNames(styles.dropdownItemText)}>Sign out</span>
       </DropdownItem>

@@ -7,11 +7,9 @@ import {
 } from "../actionType";
 
 const initialState = {
-  accessToken: sessionStorage.getItem("ytc-access-token") ?? null,
-  user: sessionStorage.getItem("ytc-user")
-    ? JSON.parse(sessionStorage.getItem("ytc-user"))
-    : null,
-  loading: false,
+  logged: false,
+  user: null,
+  loading: true,
 };
 
 export const authReducer = (prevState = initialState, action) => {
@@ -26,14 +24,15 @@ export const authReducer = (prevState = initialState, action) => {
       return {
         ...prevState,
         loading: false,
-        accessToken: action.payload,
+        logged: true,
       };
     case LOGIN_FAIL:
       return {
         ...prevState,
-        accessToken: null,
+        logged: false,
         loading: false,
         error: action.payload,
+        user: null,
       };
     case LOAD_PROFILE:
       return {
@@ -44,7 +43,7 @@ export const authReducer = (prevState = initialState, action) => {
     case LOG_OUT:
       return {
         ...prevState,
-        accessToken: null,
+        logged: false,
         user: null,
       };
 
