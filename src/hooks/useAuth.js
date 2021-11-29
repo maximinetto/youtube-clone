@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   login as loginAction,
+  loginFail,
   loginSuccess,
   logout as logoutAction,
-} from "@/redux/actions/auth.action";
+} from "../redux/actions/auth.action";
 import {
   login as loginInFirebase,
   logout as logoutFromFirebase,
-} from "../firebase";
+} from "../services/auth";
 
 export default function useAuth() {
   const { loading, logged } = useSelector((state) => ({
@@ -18,9 +19,13 @@ export default function useAuth() {
 
   function login() {
     dispatch(loginAction());
-    loginInFirebase().then(() => {
-      dispatch(loginSuccess());
-    });
+    loginInFirebase()
+      .then(() => {
+        dispatch(loginSuccess());
+      })
+      .catch((error) => {
+        dispatch(loginFail(error));
+      });
   }
 
   function logout() {

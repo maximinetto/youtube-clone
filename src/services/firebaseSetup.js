@@ -1,12 +1,5 @@
 import { initializeApp } from "firebase/app";
 
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  getAuth,
-  signOut,
-} from "firebase/auth";
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -17,18 +10,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-export const login = () => {
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-  provider.addScope("profile");
-  provider.addScope("email");
-  return signInWithPopup(auth, provider);
-};
-
-export const logout = () => {
-  const auth = getAuth(app);
-  return signOut(auth);
-};
 
 export default app;

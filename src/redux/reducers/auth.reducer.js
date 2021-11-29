@@ -12,7 +12,7 @@ const initialState = {
   loading: true,
 };
 
-export const authReducer = (prevState = initialState, action) => {
+const authReducer = (prevState = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -45,9 +45,12 @@ export const authReducer = (prevState = initialState, action) => {
         ...prevState,
         logged: false,
         user: null,
+        loading: false,
       };
 
     default:
       return prevState;
   }
 };
+
+export default authReducer;

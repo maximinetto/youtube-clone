@@ -7,7 +7,7 @@ import Icon, { ICONS_NAME } from "../Icons/Icon";
 import DropdownItem from "../DropdrowItem";
 import useClickOutside from "../../hooks/useClickOutside";
 import Avatar from "../Avatar";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 function ProfileDropdown({ openMenuProfile, onClickOutside, target }) {
   const ref = useRef();

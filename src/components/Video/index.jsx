@@ -1,38 +1,55 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./_index.module.scss";
+import useTime from "../../hooks/useTime";
 
-function Video() {
+function Video({
+  id,
+  title,
+  thumbnail,
+  views,
+  publishedAt,
+  channelPhoto,
+  channelTitle,
+  duration,
+}) {
+  const publishedAtFormatted = useTime(publishedAt);
+  const durationFormatted = useTime(duration, { duration: true });
+
   return (
     <div className={styles.video}>
       <div className={styles.videoTop}>
-        <img
-          src="https://i.ytimg.com/an_webp/V84yjOdtybQ/mqdefault_6s.webp?du=3000&sqp=CKjBiowG&rs=AOn4CLA_MzIWUuiULZeCVrjeBO_rdXTTkw"
-          alt=""
-        />
-        <span>05:43</span>
+        <img src={thumbnail} alt="" />
+        <time dateTime={duration}>{durationFormatted}</time>
       </div>
       <div className={styles.videoBottom}>
         <div className={styles.videoLeft}>
-          <img
-            src="https://yt3.ggpht.com/ytc/AKedOLSsnWm_dQzIqM-qgW74yebXNX_b__k6WAeUBb6GeGQ=s176-c-k-c0x00ffffff-no-rj-mo"
-            alt="Photo"
-          />
+          <img src={channelPhoto} alt="Photo" />
         </div>
         <div className={styles.videoBottomCenter}>
-          <div className={styles.videoTitle}>
-            How to create a app in 5 minutes #made by Maximinetto
-          </div>
+          <div className={styles.videoTitle}>{title}</div>
           <div className={styles.videoChannel}>
-            <p>Maximinetto</p>
+            <p>{channelTitle}</p>
           </div>
           <div className={styles.videoDetails}>
-            <span>5m views •</span>
-            <span>5 days ago</span>
+            <span>{views} views</span> <span> • </span>
+            <time dateTime={publishedAt}>{publishedAtFormatted}</time>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+Video.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  views: PropTypes.number.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  channelPhoto: PropTypes.string.isRequired,
+  channelTitle: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
+};
 
 export default Video;

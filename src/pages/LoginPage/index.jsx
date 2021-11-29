@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import YoutubeIcon from "../../components/Icons/YoutubeIcon";
 import styles from "./_index.module.scss";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 function LoginPage() {
   const { login } = useAuth();
