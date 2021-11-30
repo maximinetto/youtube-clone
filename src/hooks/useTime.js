@@ -20,8 +20,6 @@ const DATE_STRINGS = UNITS_IN_PLURAL.map(([unit], index) => [
   VALUES[index][0],
 ]);
 
-console.log(DATE_STRINGS);
-
 const getDateDiff = (timestamp) => {
   const now = Date.now();
   const diff = (now - new Date(timestamp)) / 1000;

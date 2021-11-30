@@ -8,6 +8,7 @@ const initialState = {
   videos: [],
   loading: false,
   nextPageToken: null,
+  activeCategory: "All",
 };
 
 const videosReducer = (state = initialState, { type, payload }) => {
@@ -24,6 +25,7 @@ const videosReducer = (state = initialState, { type, payload }) => {
         loading: false,
         videos: payload.videos,
         nextPageToken: payload.nextPageToken,
+        activeCategory: payload.category,
       };
 
     case HOME_VIDEOS_FAIL:

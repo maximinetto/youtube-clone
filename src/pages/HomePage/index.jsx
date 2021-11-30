@@ -6,7 +6,7 @@ import Video from "../../components/Video";
 import styles from "./_index.module.scss";
 
 function HomePage() {
-  const { loading, videos } = useVideos();
+  const { loading, videos, refetch } = useVideos();
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -14,7 +14,7 @@ function HomePage() {
 
   return (
     <div className={classNames(styles.homeContainer)}>
-      <CategoriesBar />
+      <CategoriesBar refetchVideos={refetch} />
       <div className={classNames(styles.homeGrid)}>
         {videos.map((video) => (
           <Video

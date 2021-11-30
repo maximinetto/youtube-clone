@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPopularVideos } from "../redux/actions/videos.action";
 
@@ -9,11 +9,15 @@ function useVideos() {
     videos: state.homeVideos.videos,
   }));
 
-  useEffect(() => {
+  const fetchVideos = useCallback(() => {
     dispatch(getPopularVideos());
   }, [dispatch]);
 
-  return { loading, videos };
+  useEffect(() => {
+    fetchVideos();
+  }, [fetchVideos]);
+
+  return { loading, videos, refetch: fetchVideos };
 }
 
 export default useVideos;

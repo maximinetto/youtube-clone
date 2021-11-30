@@ -1,5 +1,56 @@
 import { request } from "./youtubeSetup";
 
+async function fetchChannelVideos(videos) {
+  const channelIds = videos.map((item) => item.snippet.channelId);
+  const channelsResponse = await request("/channels", {
+    params: {
+      part: "snippet",
+      id: channelIds.join(","),
+    },
+  }).then((response) => response.data);
+
+  return channelsResponse;
+}
+
+function formatChannelVideos({ videos, channels, nextPageToken }) {
+  return {
+    videos: videos.map(({ id, snippet, contentDetails, statistics }) => {
+      const channelPhoto = channels.items.find(
+        ({ id }) => id === snippet.channelId
+      ).snippet.thumbnails.default.url;
+      return {
+        id: id,
+        title: snippet.title,
+        thumbnail: snippet.thumbnails.medium.url,
+        channelPhoto: channelPhoto,
+        channelTitle: snippet.channelTitle,
+        publishedAt: snippet.publishedAt,
+        duration: contentDetails.duration,
+        views: Number(statistics.viewCount),
+      };
+    }),
+    nextPageToken,
+  };
+}
+
+const getVideosByIds = async (ids, nextPageToken) => {
+  const videosResponse = await request("/videos", {
+    params: {
+      part: "snippet,contentDetails,statistics",
+      id: ids.join(","),
+      regionCode: "ES",
+    },
+  }).then((response) => response.data);
+
+  const channelsResponse = await fetchChannelVideos(videosResponse.items);
+
+  return formatChannelVideos({
+    videos: videosResponse.items,
+    channels: channelsResponse,
+    nextPageToken,
+  });
+};
+
 /**
  * @typedef {Object} Video
  * @property {string} id
@@ -33,30 +84,29 @@ export const getPopularVideos = async () => {
   });
 
   const { items, nextPageToken } = videosResponse.data;
-  const channelIds = items.map((item) => item.snippet.channelId);
-  const channelsResponse = await request("/channels", {
+
+  const channelsResponse = await fetchChannelVideos(items);
+
+  return formatChannelVideos({
+    videos: items,
+    channels: channelsResponse,
+    nextPageToken,
+  });
+};
+
+export const getVideosByCategory = async (keyboard, nextPageToken) => {
+  const videosResponse = await request.get("/search", {
     params: {
       part: "snippet",
-      id: channelIds.join(","),
+      maxResults: "20",
+      q: keyboard,
+      type: "video",
+      pageToken: nextPageToken,
     },
-  }).then((response) => response.data);
+  });
 
-  return {
-    videos: items.map(({ id, snippet, contentDetails, statistics }) => {
-      const channelPhoto = channelsResponse.items.find(
-        ({ id }) => id === snippet.channelId
-      ).snippet.thumbnails.default.url;
-      return {
-        id: id,
-        title: snippet.title,
-        thumbnail: snippet.thumbnails.medium.url,
-        channelPhoto: channelPhoto,
-        channelTitle: snippet.channelTitle,
-        publishedAt: snippet.publishedAt,
-        duration: contentDetails.duration,
-        views: Number(statistics.viewCount),
-      };
-    }),
-    nextPageToken,
-  };
+  return getVideosByIds(
+    videosResponse.data.items.map((item) => item.id.videoId),
+    nextPageToken
+  );
 };

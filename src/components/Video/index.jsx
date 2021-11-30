@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./_index.module.scss";
 import useTime from "../../hooks/useTime";
+import numeral from "numeral";
 
 function Video({
   id,
@@ -15,6 +16,7 @@ function Video({
 }) {
   const publishedAtFormatted = useTime(publishedAt);
   const durationFormatted = useTime(duration, { duration: true });
+  const viewsFormatted = numeral(views).format("0.a");
 
   return (
     <div className={styles.video}>
@@ -32,7 +34,7 @@ function Video({
             <p>{channelTitle}</p>
           </div>
           <div className={styles.videoDetails}>
-            <span>{views} views</span> <span> • </span>
+            <span>{viewsFormatted} views</span> <span> • </span>
             <time dateTime={publishedAt}>{publishedAtFormatted}</time>
           </div>
         </div>
