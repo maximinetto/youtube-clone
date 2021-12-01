@@ -2,12 +2,12 @@ import classNames from "classnames";
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 
-import styles from "./_index.module.scss";
-import Icon, { ICONS_NAME } from "../Icons/Icon";
-import DropdownItem from "../DropdrowItem";
-import useClickOutside from "../../hooks/useClickOutside";
-import Avatar from "../Avatar";
-import useAuth from "../../hooks/useAuth";
+import styles from "@/components/ProfileDropdown/_index.module.scss";
+import Icon, { ICONS_NAME } from "@/components/Icons/Icon";
+import DropdownItem from "@/components/DropdrowItem";
+import useClickOutside from "@/hooks/useClickOutside";
+import Avatar from "@/components/Avatar";
+import useAuth from "@/hooks/useAuth";
 
 function ProfileDropdown({ openMenuProfile, onClickOutside, target }) {
   const ref = useRef();

@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { Redirect, Route } from "wouter";
-import useAuth from "../hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
 
 export const TypeOfGuard = {
   private: "private",

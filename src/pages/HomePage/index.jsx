@@ -1,9 +1,9 @@
-import useVideos from "../../hooks/useVideos";
+import useVideos from "@/hooks/useVideos";
 import classNames from "classnames";
 import React from "react";
-import CategoriesBar from "../../components/CategoriesBar";
-import Video from "../../components/Video";
-import styles from "./_index.module.scss";
+import CategoriesBar from "@/components/CategoriesBar";
+import Video from "@/components/Video";
+import styles from "@/pages/HomePage/_index.module.scss";
 
 function HomePage() {
   const { loading, videos, refetch } = useVideos();

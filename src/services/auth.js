@@ -4,8 +4,8 @@ import {
   signInWithPopup,
   signOut,
 } from "@firebase/auth";
-import { YOUTUBE_API_URL } from "./youtubeSetup";
-import app from "./firebaseSetup";
+import { YOUTUBE_API_URL } from "@/services/youtubeSetup";
+import app from "@/services/firebaseSetup";
 
 export const login = () => {
   const auth = getAuth(app);

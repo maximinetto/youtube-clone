@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./_index.module.scss";
-import useTime from "../../hooks/useTime";
 import numeral from "numeral";
+import styles from "@/components/Video/_index.module.scss";
+import useTime from "@/hooks/useTime";
 
 function Video({
   id,

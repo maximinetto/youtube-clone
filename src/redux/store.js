@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import authReducer from "./reducers/auth.reducer";
-import homeVideosReducer from "./reducers/videos.reducer";
+import authReducer from "@/redux/reducers/auth.reducer";
+import homeVideosReducer from "@/redux/reducers/videos.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,

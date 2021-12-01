@@ -1,4 +1,4 @@
-import app from "../../services/firebaseSetup";
+import app from "@/services/firebaseSetup";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   LOAD_PROFILE,
@@ -6,7 +6,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOG_OUT,
-} from "../actionType";
+} from "@/redux/actionType";
 
 export const login = () => ({ type: LOGIN_REQUEST });
 

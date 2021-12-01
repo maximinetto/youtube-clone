@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { getVideosByCategory } from "../redux/actions/videos.action";
+import { getVideosByCategory } from "@/redux/actions/videos.action";
 
 export default function useVideosByCategory() {
   const dispatch = useDispatch();

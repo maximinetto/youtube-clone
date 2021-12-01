@@ -1,10 +1,10 @@
 import React from "react";
 import { Redirect, Switch } from "wouter";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import Layout from "./components/Layout";
-import GuardRoute, { TypeOfGuard } from "./components/GuardRoute";
-import Auth from "./components/Auth";
+import HomePage from "@/pages/HomePage";
+import LoginPage from "@/pages/LoginPage";
+import Layout from "@/components/Layout";
+import GuardRoute, { TypeOfGuard } from "@/components/GuardRoute";
+import Auth from "@/components/Auth";
 
 const App = () => {
   return (

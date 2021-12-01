@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import Icon, { ICONS_NAME } from "../Icons/Icon";
-import YoutubeIcon from "../Icons/YoutubeIcon";
-import styles from "./_index.module.scss";
+import Icon, { ICONS_NAME } from "@/components/Icons/Icon";
+import YoutubeIcon from "@/components/Icons/YoutubeIcon";
+import styles from "@/components/LeftMenu/_index.module.scss";
 
 function LeftMenu({ onToggleSidebar }) {
   return (

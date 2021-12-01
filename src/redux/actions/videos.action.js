@@ -2,11 +2,11 @@ import {
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
-} from "../actionType";
+} from "@/redux/actionType";
 import {
   getPopularVideos as fetchPopularVideos,
   getVideosByCategory as fetchVideosByCategory,
-} from "../../services/videos";
+} from "@/services/videos";
 
 export const getPopularVideos = () => async (dispatch) => {
   try {

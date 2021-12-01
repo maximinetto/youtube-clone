@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import styles from "./_index.module.scss";
+import styles from "@/components/DropdrowItem/_index.module.scss";
 
 function DropdownItem({ children, onClick }) {
   return (

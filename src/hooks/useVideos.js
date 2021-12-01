@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPopularVideos } from "../redux/actions/videos.action";
+import { getPopularVideos } from "@/redux/actions/videos.action";
 
 function useVideos() {
   const dispatch = useDispatch();

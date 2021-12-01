@@ -4,11 +4,11 @@ import {
   loginFail,
   loginSuccess,
   logout as logoutAction,
-} from "../redux/actions/auth.action";
+} from "@/redux/actions/auth.action";
 import {
   login as loginInFirebase,
   logout as logoutFromFirebase,
-} from "../services/auth";
+} from "@/services/auth";
 
 export default function useAuth() {
   const { loading, logged } = useSelector((state) => ({

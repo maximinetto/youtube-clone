@@ -1,4 +1,4 @@
-import { request } from "./youtubeSetup";
+import { request } from "@/services/youtubeSetup";
 
 async function fetchChannelVideos(videos) {
   const channelIds = videos.map((item) => item.snippet.channelId);

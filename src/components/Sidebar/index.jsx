@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import Icon, { ICONS_NAME } from "../Icons/Icon";
-import LeftMenu from "../LeftMenu";
-import styles from "./_index.module.scss";
+import Icon, { ICONS_NAME } from "@/components/Icons/Icon";
+import LeftMenu from "@/components/LeftMenu";
+import styles from "@/components/Sidebar/_index.module.scss";
 
 function Sidebar({ show, onToggleSidebar }) {
   const sidebarContainer = useRef();

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import ProfileDropdown from "../ProfileDropdown";
-import Header from "../Header";
-import Sidebar from "../Sidebar";
-import styles from "../../_app.module.scss";
+import ProfileDropdown from "@/components/ProfileDropdown";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import styles from "@/_app.module.scss";
 
 const Layout = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);

@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import Icon, { ICONS_NAME } from "../Icons/Icon";
-import styles from "./_index.module.scss";
-import LeftMenu from "../LeftMenu";
-import Avatar from "../Avatar";
+import Icon, { ICONS_NAME } from "@/components/Icons/Icon";
+import styles from "@/components/Header/_index.module.scss";
+import LeftMenu from "@/components/LeftMenu";
+import Avatar from "@/components/Avatar";
 
 const Header = React.forwardRef(
   ({ onToggleSidebar, onToggleButtonProfile }, ref) => {

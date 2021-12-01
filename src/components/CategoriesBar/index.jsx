@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import useActiveCategory from "../../hooks/useActiveCategory";
-import useVideosByCategory from "../../hooks/useVideosByCategory";
-import styles from "./_index.module.scss";
+import useActiveCategory from "@/hooks/useActiveCategory";
+import useVideosByCategory from "@/hooks/useVideosByCategory";
+import styles from "@/components/CategoriesBar/_index.module.scss";
 
 const keyboards = [
   "All",
