@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import styles from "@/_app.module.scss";
 
-const Layout = ({ children }) => {
-  const [sidebar, setSidebar] = useState(false);
+const Layout = ({ children, alwaysVisible = true }) => {
+  const [sidebar, setSidebar] = useState(() => alwaysVisible);
   const [openMenuProfile, setOpenMenuProfile] = useState(false);
 
   const avatarRef = useRef();
@@ -34,7 +34,11 @@ const Layout = ({ children }) => {
         target={avatarRef}
       />
       <div className={classNames(styles.appContainer)}>
-        <Sidebar show={sidebar} onToggleSidebar={handleToggleSidebar} />
+        <Sidebar
+          show={sidebar}
+          onToggleSidebar={handleToggleSidebar}
+          alwaysVisible={alwaysVisible}
+        />
         <div className={classNames(styles.appMain)}>{children}</div>
       </div>
     </>
@@ -43,6 +47,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  alwaysVisible: PropTypes.bool,
 };
 
 export default Layout;

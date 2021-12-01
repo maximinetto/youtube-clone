@@ -13,11 +13,15 @@ function useVideos() {
     dispatch(getPopularVideos());
   }, [dispatch]);
 
+  const fetchMoreVideos = () => {
+    // dispatch(getPopularVideos(videos.nextPageToken));
+  };
+
   useEffect(() => {
     fetchVideos();
   }, [fetchVideos]);
 
-  return { loading, videos, refetch: fetchVideos };
+  return { loading, videos, refetch: fetchVideos, fetchMore: fetchMoreVideos };
 }
 
 export default useVideos;

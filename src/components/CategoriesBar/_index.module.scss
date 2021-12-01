@@ -2,10 +2,11 @@
 @import "@/base.module";
 
 .categoriesBar {
-  padding: .5em 0;
+  padding: 1em 0;
   font-size: .9rem;
   display: flex;
   overflow-x: scroll;
+  border: 1px solid white;
 
   &::-webkit-scrollbar {
     width: 0px;

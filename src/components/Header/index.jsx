@@ -1,21 +1,42 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import Icon, { ICONS_NAME } from "@/components/Icons/Icon";
 import styles from "@/components/Header/_index.module.scss";
 import LeftMenu from "@/components/LeftMenu";
 import Avatar from "@/components/Avatar";
+import useResizeObserver from "@/hooks/useResizeObserver";
 
 const Header = React.forwardRef(
   ({ onToggleSidebar, onToggleButtonProfile }, ref) => {
     const boxAnimationCloseButton = useRef();
+    const headerRef = useRef();
+
+    const setWidthHeader = useCallback(() => {
+      const header = headerRef.current;
+      const height = header.offsetHeight;
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${height}px`
+      );
+    }, []);
+
+    useEffect(() => {
+      setWidthHeader();
+    }, [setWidthHeader]);
+
+    const width = (entry, observer) => {
+      setWidthHeader();
+    };
+
+    useResizeObserver(headerRef, width);
 
     const handleSubmit = (e) => {
       e.preventDefault();
     };
 
     return (
-      <div className={classNames(styles.header)}>
+      <div className={classNames(styles.header)} ref={headerRef}>
         <LeftMenu onToggleSidebar={onToggleSidebar} />
         <form className={classNames(styles.headerForm)} onChange={handleSubmit}>
           <div className={classNames(styles.searchContainer)}>

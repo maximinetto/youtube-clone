@@ -11,6 +11,7 @@ export const TypeOfGuard = {
 function GuardRoute({
   component: Component = React.Fragment,
   layout: Layout = React.Fragment,
+  sidebarAlwaysVisible = true,
   children,
   type,
   ...rest
@@ -28,7 +29,9 @@ function GuardRoute({
     </Route>
   ) : (
     <Route {...rest}>
-      <Layout>{<Component {...rest} />}</Layout>
+      <Layout alwaysVisible={sidebarAlwaysVisible}>
+        {<Component {...rest} />}
+      </Layout>
     </Route>
   );
 }
@@ -38,6 +41,7 @@ GuardRoute.propTypes = {
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   children: PropTypes.node,
   type: PropTypes.oneOf([TypeOfGuard.private, TypeOfGuard.public]),
+  sidebarAlwaysVisible: PropTypes.bool,
 };
 
 export default GuardRoute;
