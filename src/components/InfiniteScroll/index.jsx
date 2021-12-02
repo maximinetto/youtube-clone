@@ -37,8 +37,8 @@ const InfiniteScroll = React.memo(function ({
   return (
     <>
       <div className={className || ""}>{children}</div>
-      {loading && loader}
       <div className={classNameVisor || ""} ref={externalRef}></div>
+      {loading && loader}
     </>
   );
 });
@@ -48,9 +48,10 @@ InfiniteScroll.displayName = "InfiniteScroll";
 InfiniteScroll.propTypes = {
   children: PropTypes.element.isRequired,
   distance: PropTypes.string,
+  threshold: PropTypes.number,
   hasMore: PropTypes.bool.isRequired,
   loader: PropTypes.element.isRequired,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   loadMore: PropTypes.func.isRequired,
   className: PropTypes.string,
   classNameVisor: PropTypes.string,

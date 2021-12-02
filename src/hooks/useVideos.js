@@ -1,27 +1,29 @@
+import { getPopularVideos } from "@/redux/actions/videos.action";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPopularVideos } from "@/redux/actions/videos.action";
+import useVideosByCategory from "./useVideosByCategory";
 
 function useVideos() {
+  const fetchVideosByCategory = useVideosByCategory();
   const dispatch = useDispatch();
-  const { loading, videos } = useSelector((state) => ({
+
+  const { loading, videos, activeCategory } = useSelector((state) => ({
     loading: state.homeVideos.loading,
     videos: state.homeVideos.videos,
+    activeCategory: state.homeVideos.activeCategory,
   }));
 
   const fetchVideos = useCallback(() => {
-    dispatch(getPopularVideos());
-  }, [dispatch]);
-
-  const fetchMoreVideos = () => {
-    // dispatch(getPopularVideos(videos.nextPageToken));
-  };
+    activeCategory.toLowerCase() === "all"
+      ? dispatch(getPopularVideos())
+      : fetchVideosByCategory(activeCategory);
+  }, [activeCategory, dispatch, fetchVideosByCategory]);
 
   useEffect(() => {
     fetchVideos();
   }, [fetchVideos]);
 
-  return { loading, videos, refetch: fetchVideos, fetchMore: fetchMoreVideos };
+  return { loading, videos, fetchMore: fetchVideos };
 }
 
 export default useVideos;

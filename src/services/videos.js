@@ -70,31 +70,33 @@ const getVideosByIds = async (ids, nextPageToken) => {
 
 /**
  * Get the next page of videos
+ * @param {string} nextPageToken
  * @return {Promise<Videos>} - The promise resolves with the next page of videos
  */
-export const getPopularVideos = async () => {
+export const getPopularVideos = async (nextPageToken) => {
   const videosResponse = await request.get("/videos", {
     params: {
       part: "snippet,contentDetails,statistics",
       chart: "mostPopular",
       maxResults: "20",
       regionCode: "ES",
-      pageToken: "",
+      pageToken: nextPageToken,
     },
   });
 
-  const { items, nextPageToken } = videosResponse.data;
+  const { items, nextPageToken: _nextPageToken } = videosResponse.data;
 
   const channelsResponse = await fetchChannelVideos(items);
 
   return formatChannelVideos({
     videos: items,
     channels: channelsResponse,
-    nextPageToken,
+    nextPageToken: _nextPageToken,
   });
 };
 
 export const getVideosByCategory = async (keyboard, nextPageToken) => {
+  console.log("getVideosByCategory", keyboard, nextPageToken);
   const videosResponse = await request.get("/search", {
     params: {
       part: "snippet",
@@ -107,6 +109,6 @@ export const getVideosByCategory = async (keyboard, nextPageToken) => {
 
   return getVideosByIds(
     videosResponse.data.items.map((item) => item.id.videoId),
-    nextPageToken
+    videosResponse.data.nextPageToken
   );
 };

@@ -1,9 +1,8 @@
-import classNames from "classnames";
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import useActiveCategory from "@/hooks/useActiveCategory";
-import useVideosByCategory from "@/hooks/useVideosByCategory";
 import styles from "@/components/CategoriesBar/_index.module.scss";
+import useCategory from "@/hooks/useCategory";
 
 const keyboards = [
   "All",
@@ -25,14 +24,14 @@ const keyboards = [
   "Microservices",
 ];
 
-function CategoriesBar({ refetchVideos }) {
+function CategoriesBar() {
   const category = useActiveCategory();
+  const { changeCategory } = useCategory();
   const [activeElement, setActiveElement] = useState(category);
-  const fetchVideosByCategory = useVideosByCategory();
 
   const handleKeyboard = (keyboard) => () => {
     setActiveElement(keyboard);
-    keyboard === "All" ? refetchVideos() : fetchVideosByCategory(keyboard);
+    changeCategory(keyboard);
   };
 
   return (
@@ -51,9 +50,5 @@ function CategoriesBar({ refetchVideos }) {
     </div>
   );
 }
-
-CategoriesBar.propTypes = {
-  refetchVideos: PropTypes.func.isRequired,
-};
 
 export default CategoriesBar;

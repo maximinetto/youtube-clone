@@ -1,4 +1,5 @@
 import {
+  HOME_VIDEOS_CHANGE_CATEGORY,
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
@@ -8,10 +9,11 @@ import {
   getVideosByCategory as fetchVideosByCategory,
 } from "@/services/videos";
 
-export const getPopularVideos = () => async (dispatch) => {
+export const getPopularVideos = () => async (dispatch, getState) => {
   try {
     dispatch({ type: HOME_VIDEOS_REQUEST });
-    const data = await fetchPopularVideos();
+    const _nextPageToken = getState().homeVideos.nextPageToken;
+    const data = await fetchPopularVideos(_nextPageToken);
     dispatch({
       type: HOME_VIDEOS_SUCCESS,
       payload: {
@@ -42,4 +44,11 @@ export const getVideosByCategory = (keyboard) => async (dispatch, getState) => {
     console.log(err);
     dispatch({ type: HOME_VIDEOS_FAIL, payload: err.message });
   }
+};
+
+export const changeCategory = (category) => {
+  return {
+    type: HOME_VIDEOS_CHANGE_CATEGORY,
+    payload: category,
+  };
 };

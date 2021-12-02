@@ -1,29 +1,27 @@
+import React from "react";
 import useVideos from "@/hooks/useVideos";
 import classNames from "classnames";
-import React from "react";
 import CategoriesBar from "@/components/CategoriesBar";
-import Video from "@/components/Video";
-import InfiniteScroll from "@/components/InfiniteScroll";
 import styles from "@/pages/HomePage/_index.module.scss";
-import Spinner from "@/components/Spinner/index";
 import useHasMoreVideos from "@/hooks/useHasMoreVideos";
+import InfiniteScroll from "@/components/InfiniteScroll";
+import Video from "@/components/Video";
 
 function HomePage() {
-  const { loading, videos, refetch, fetchMore } = useVideos();
+  const { loading, videos, fetchMore } = useVideos();
   const hasMoreVideos = useHasMoreVideos();
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     <div className={classNames(styles.homeContainer)}>
-      <CategoriesBar refetchVideos={refetch} />
+      <CategoriesBar />
       <InfiniteScroll
-        loader={<Spinner />}
+        loader={<div>Loading...</div>}
         hasMore={hasMoreVideos}
         loadMore={fetchMore}
         className={styles.videosContainer}
+        loading={loading}
+        distance="600px"
+        threshold={0}
       >
         <div className={classNames(styles.homeGrid)}>
           {videos.map((video) => (

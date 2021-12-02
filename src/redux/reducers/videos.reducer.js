@@ -1,4 +1,5 @@
 import {
+  HOME_VIDEOS_CHANGE_CATEGORY,
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
@@ -23,9 +24,20 @@ const videosReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        videos: payload.videos,
+        videos:
+          state.nextPageToken !== null
+            ? [...state.videos, ...payload.videos]
+            : payload.videos,
         nextPageToken: payload.nextPageToken,
         activeCategory: payload.category,
+      };
+
+    case HOME_VIDEOS_CHANGE_CATEGORY:
+      return {
+        ...state,
+        activeCategory: payload,
+        videos: [],
+        nextPageToken: null,
       };
 
     case HOME_VIDEOS_FAIL:
