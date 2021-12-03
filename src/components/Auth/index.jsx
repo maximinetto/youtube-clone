@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import Spinner from "@/components/Spinner";
 import useAuth from "@/hooks/useAuth";
 
+import styles from "./_index.module.scss";
+
 function Auth({ children }) {
   const dispatch = useDispatch();
   const { loading } = useAuth();
@@ -14,7 +16,11 @@ function Auth({ children }) {
   }, [dispatch]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className={styles.container}>
+        <Spinner />
+      </div>
+    );
   }
 
   return children;

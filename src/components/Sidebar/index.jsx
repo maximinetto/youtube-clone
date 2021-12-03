@@ -40,8 +40,8 @@ function Sidebar({ show, alwaysVisible = true, onToggleSidebar }) {
         ref={sidebar}
       >
         <ul>
-          {show && alwaysVisible && (
-            <li className={classNames(styles.sidebarItem, styles.margin)}>
+          {show && (
+            <li className={classNames(styles.sidebarLogo, styles.margin)}>
               <LeftMenu onToggleSidebar={onToggleSidebar} />
             </li>
           )}

@@ -8,14 +8,15 @@ export const TypeOfGuard = {
   public: "public",
 };
 
-function GuardRoute({
+const GuardRoute = ({
   component: Component = React.Fragment,
   layout: Layout = React.Fragment,
   sidebarAlwaysVisible = true,
+  sidebarContainerFixed = false,
   children,
   type,
   ...rest
-}) {
+}) => {
   const { logged } = useAuth();
 
   if (type === TypeOfGuard.private && !logged) {
@@ -29,12 +30,15 @@ function GuardRoute({
     </Route>
   ) : (
     <Route {...rest}>
-      <Layout alwaysVisible={sidebarAlwaysVisible}>
+      <Layout
+        alwaysVisible={sidebarAlwaysVisible}
+        sidebarContainerFixed={sidebarContainerFixed}
+      >
         {<Component {...rest} />}
       </Layout>
     </Route>
   );
-}
+};
 
 GuardRoute.propTypes = {
   layout: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
@@ -42,6 +46,7 @@ GuardRoute.propTypes = {
   children: PropTypes.node,
   type: PropTypes.oneOf([TypeOfGuard.private, TypeOfGuard.public]),
   sidebarAlwaysVisible: PropTypes.bool,
+  sidebarContainerFixed: PropTypes.bool,
 };
 
 export default GuardRoute;

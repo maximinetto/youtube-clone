@@ -2,10 +2,11 @@ import React from "react";
 import useVideos from "@/hooks/useVideos";
 import classNames from "classnames";
 import CategoriesBar from "@/components/CategoriesBar";
-import styles from "@/pages/HomePage/_index.module.scss";
 import useHasMoreVideos from "@/hooks/useHasMoreVideos";
 import InfiniteScroll from "@/components/InfiniteScroll";
 import Video from "@/components/Video";
+import Spinner from "@/components/Spinner";
+import styles from "@/pages/HomePage/_index.module.scss";
 
 function HomePage() {
   const { loading, videos, fetchMore } = useVideos();
@@ -15,7 +16,11 @@ function HomePage() {
     <div className={classNames(styles.homeContainer)}>
       <CategoriesBar />
       <InfiniteScroll
-        loader={<div>Loading...</div>}
+        loader={
+          <div className={styles.marginTopSpinner}>
+            <Spinner size={50} borderWidth={5} />
+          </div>
+        }
         hasMore={hasMoreVideos}
         loadMore={fetchMore}
         className={styles.videosContainer}

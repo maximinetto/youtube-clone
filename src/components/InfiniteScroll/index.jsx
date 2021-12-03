@@ -35,11 +35,11 @@ const InfiniteScroll = React.memo(function ({
   }, [debounceHandleNextPage, isNearScreen, hasMore]);
 
   return (
-    <>
-      <div className={className || ""}>{children}</div>
+    <div className={className || ""}>
+      {children}
       <div className={classNameVisor || ""} ref={externalRef}></div>
       {loading && loader}
-    </>
+    </div>
   );
 });
 

@@ -1,14 +1,27 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { useMediaQuery } from "react-responsive";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import styles from "@/_app.module.scss";
 
-const Layout = ({ children, alwaysVisible = true }) => {
+const Layout = ({ children, alwaysVisible }) => {
   const [sidebar, setSidebar] = useState(() => alwaysVisible);
   const [openMenuProfile, setOpenMenuProfile] = useState(false);
+
+  const handleMediaQueryChange = (matches) => {
+    if (sidebar) {
+      setSidebar(false);
+    }
+  };
+
+  const isBiggerScreen = useMediaQuery(
+    { query: "(min-width: 1500px)" },
+    undefined,
+    handleMediaQueryChange
+  );
 
   const avatarRef = useRef();
 
@@ -34,11 +47,26 @@ const Layout = ({ children, alwaysVisible = true }) => {
         target={avatarRef}
       />
       <div className={classNames(styles.appContainer)}>
-        <Sidebar
-          show={sidebar}
-          onToggleSidebar={handleToggleSidebar}
-          alwaysVisible={alwaysVisible}
-        />
+        {!sidebar && (
+          <Sidebar
+            show={sidebar}
+            onToggleSidebar={handleToggleSidebar}
+            alwaysVisible={alwaysVisible}
+          />
+        )}
+        {alwaysVisible && isBiggerScreen ? (
+          <Sidebar
+            show={sidebar}
+            onToggleSidebar={handleToggleSidebar}
+            alwaysVisible={true}
+          />
+        ) : (
+          <Sidebar
+            show={sidebar}
+            alwaysVisible={false}
+            onToggleSidebar={handleToggleSidebar}
+          />
+        )}
         <div className={classNames(styles.appMain)}>{children}</div>
       </div>
     </>
