@@ -67,7 +67,7 @@
   align-items: center;
   justify-content: flex-start;
   height: var(--header-height);
-  padding: 0.5em 0;
+  padding: 0.5rem 0;
 }
 
 .sidebarContainer:not(.alwaysVisible) {
@@ -99,22 +99,22 @@
 .sidebarItem {
   display: flex;
   align-items: center;
-  padding: 0.57em 0 0.57em 1.5em;
+  padding: 0.57rem 0 0.57rem 1.5rem;
   margin: 0;
 
   &LeftIcon {
-    margin-right: 1.5em;
+    margin-right: 1.5rem;
   }
 
   span {
     font-size: 0.9rem;
     font-weight: 500;
-    padding-top: 0.1em;
+    padding-top: 0.1rem;
     letter-spacing: 0.4px;
   }
 
   &.margin {
-    margin-bottom: 1.2em;
+    margin-bottom: 1.2rem;
   }
 
   &.background {

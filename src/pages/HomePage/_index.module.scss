@@ -1,7 +1,7 @@
 .homeGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 10px 10px;
+  gap: .625rem .625rem;
 }
 
 .homeContainer {

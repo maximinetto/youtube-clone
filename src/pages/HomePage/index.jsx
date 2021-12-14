@@ -7,6 +7,7 @@ import InfiniteScroll from "@/components/InfiniteScroll";
 import Video from "@/components/Video";
 import Spinner from "@/components/Spinner";
 import styles from "@/pages/HomePage/_index.module.scss";
+import SkeletonVideo from "@/components/SkeletonVideo/index";
 
 function HomePage() {
   const { loading, videos, fetchMore } = useVideos();
@@ -29,19 +30,23 @@ function HomePage() {
         threshold={0}
       >
         <div className={classNames(styles.homeGrid)}>
-          {videos.map((video) => (
-            <Video
-              key={video.id}
-              id={video.id}
-              title={video.title}
-              thumbnail={video.thumbnail}
-              views={video.views}
-              publishedAt={video.publishedAt}
-              channelPhoto={video.channelPhoto}
-              channelTitle={video.channelTitle}
-              duration={video.duration}
-            />
-          ))}
+          {!loading
+            ? videos.map((video) => (
+                <Video
+                  key={video.id}
+                  id={video.id}
+                  title={video.title}
+                  thumbnail={video.thumbnail}
+                  views={video.views}
+                  publishedAt={video.publishedAt}
+                  channelPhoto={video.channelPhoto}
+                  channelTitle={video.channelTitle}
+                  duration={video.duration}
+                />
+              ))
+            : [...Array(20)].map((value, index) => (
+                <SkeletonVideo key={index} />
+              ))}
         </div>
       </InfiniteScroll>
     </div>

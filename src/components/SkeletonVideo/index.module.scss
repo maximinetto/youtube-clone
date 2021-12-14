@@ -1,0 +1,45 @@
+.skeletonContainer {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.skeletonContentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.skeletonTitle {
+  height: 40px;
+  width: 40px;
+  display: block;
+  min-width: 40px;
+  margin-right: 0.5rem;
+}
+
+.skeletonContent {
+  width: 100%;
+}
+
+.skeletonContent:first-of-type {
+  margin-bottom: 0.3rem;
+}
+
+.skeletonContent {
+  display: block;
+}
+
+.flex {
+  display: flex;
+  height: 40px;
+}
+
+.flexColumn {
+  flex-direction: column;
+}
+
+.fullWidth {
+  width: 100%;
+}
